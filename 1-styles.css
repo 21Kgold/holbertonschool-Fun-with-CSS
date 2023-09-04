@@ -1,9 +1,9 @@
 /* Element to add the underline animation */
 a {
     position: relative; /* Create positioning context for ::after pseudo-element */
-    text-decoration: none; /* Remove static underline style */
+    text-decoration: none; /* Remove static underline */
     color: firebrick;
-    display: inline-block; /* Apper in the same line but act as a block */
+    display: inline-block; /* Appear in the same line but act as a block */
     overflow: hidden;
     vertical-align: bottom;
 }
@@ -13,15 +13,15 @@ a::after {
     content: '';
     position: absolute;/* Positions the pseudo-element relative to its nearest positioned ancestor, which is the element with position: relative; */
     bottom: 0;
-    left: 0;
-    width: 100%; /* Spans the entire width of the parent element */
+    left: -100%; /* Position of the line at x axis, before the animation (not visible due to hidden overflow of parent element) */
+    width: 100%; /* The line spans the entire width of the parent element */
     height: 0.1em;
     background-color: firebrick;
     transition: transform 300ms; /* Animation effect */
-    transform: translateX(-100%); /* Initial position of the line and with overflow hidden on <a>, we don't see it */
+    transform: translateX(0%); /* Position of the line at the start of the animation */
   }
   
 a:hover::after,
 a:focus::after {
-  transform: translateX(0%); /* Final position of the line */
+  transform: translateX(100%); /* Position of the line at the end of the animation */
 }
